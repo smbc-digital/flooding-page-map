@@ -129,7 +129,7 @@ const Configuration = {
                 style: floodassetsStyle,
             },
             displayOverlay: true,
-            visibleByDefault: true
+            visibleByDefault: false
         },
 
         {
@@ -141,7 +141,7 @@ const Configuration = {
                 style: waterbodiesStyle,
             },
             displayOverlay: true,
-            visibleByDefault: true
+            visibleByDefault: false
         },
 
     ],
