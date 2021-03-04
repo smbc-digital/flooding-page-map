@@ -1,6 +1,6 @@
 import Leaflet from 'leaflet'
-import {  } from './Popups'
-import {  } from './Styles'
+import { gulliesPopup, drainsPopup, culvertsPopup, trashscreensPopup, floodincidentsPopup, floodassetsPopup, waterbodiesPopup } from './Popups'
+import { gulliesStyle, drainsStyle, culvertsStyle, trashscreensStyle, floodincidentsStyle, floodassetsStyle, waterbodiesStyle } from './Styles'
 
 const Configuration = {
     Map: {
@@ -42,134 +42,107 @@ const Configuration = {
             displayOverlay: false,
             visibleByDefault: true
         },
-        {
-            key: 'Article 4-1 Direction',
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=heritage:article_4_1&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
-            layerOptions: {
-                onEachFeature: Article4_1_direction_Popup,
-                maxZoom: 2,
-                style: Article4_1_direction_style
-            },
-            displayOverlay: true,
-            visibleByDefault: true
-        },
-        {
-            key: 'Article 4-2 Direction',
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=heritage:article_4_2&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
-            layerOptions: {
-                onEachFeature: Article4_2_direction_Popup,
-                maxZoom: 2,
-                style: Article4_2_direction_style
-            },
-            displayOverlay: true,
-            visibleByDefault: true
-        },
-        {
-            key: 'Conservation Area',
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=heritage:conservation_area&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
-            layerOptions: {
-                onEachFeature: Conservation_area_Popup,
-                maxZoom: 2,
-                style: Conservation_area_style
-            },
-            displayOverlay: true,
-            visibleByDefault: true
-        },
-        {
-            key: 'Registered Historic Park or Garden',
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=heritage:parkgarden_of_historic_interest&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
-            layerOptions: {
-                onEachFeature: Historic_Parks_Gardens_Popup,
-                maxZoom: 2,
-                style: Historic_parks_gardens_style
-            },
-            displayOverlay: true,
-            visibleByDefault: true
-        },
-        {
-            key: 'Scheduled Monument',
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=heritage:ancient_monument&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
-            layerOptions: {
-                onEachFeature: Scheduled_monument_Popup,
-                maxZoom: 17,
-                minZoom: 20,
-                style: Scheduled_monument_style
-            },
-            displayOverlay: true,
-            visibleByDefault: true
-        },
-        {
-            key: 'Scheduled Monument', //points - seems to work based on the code in app.js identifying layers by zoom level. Having to layers with the same key names is usually a problem.
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=heritage:ancient_monument_points&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
-            layerOptions: {
-                onEachFeature: Scheduled_monument_Popup,
-                minZoom: 16,
-                maxZoom: 2,
-                style: Scheduled_monument_points_style,
-                pointToLayer: (feature, latlng) => {
-                    return Leaflet.circleMarker(latlng)
-                },
-            },
-            displayOverlay: true,
-            visibleByDefault: true
-        },
-        {
-            key: 'Locally Listed Building',
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=heritage:locally_listed_buildings&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
-            layerOptions: {
-                onEachFeature: Locally_listed_Popup,
-                maxZoom: 17,
-                minZoom:20,
-                style: Locally_listed_style
-            },
-            displayOverlay: true,
-            visibleByDefault: true
-        },
+        //{
+            //key: 'Article 4-1 Direction',
+            //url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=highway_assets.vw_gullies&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            //layerOptions: {
+                //onEachFeature: Article4_1_direction_Popup,
+                //maxZoom: 2
+                //style: Article4_1_direction_style
+            //},
+            //displayOverlay: true,
+            //visibleByDefault: true
+        //},
 
         {
-            key: 'Locally Listed Building', //points - seems to work based on the code in app.js identifying layers by zoom level. Having to layers with the same key names is usually a problem.
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=heritage:locally_listed_building_points&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            key: 'Gullies', //points - seems to work based on the code in app.js identifying layers by zoom level. Having to layers with the same key names is usually a problem.
+            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=highway_assets:vw_gullies&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
             layerOptions: {
-                onEachFeature: Locally_listed_Popup,
-                minZoom: 16,
+                onEachFeature: gulliesPopup,
                 maxZoom: 2,
-                style: locallylistedpointsStyle,
+                style: gulliesStyle,
                 pointToLayer: (feature, latlng) => {
                     return Leaflet.circleMarker(latlng)
                 },
             },
             displayOverlay: true,
-            visibleByDefault: true
+            visibleByDefault: false
         },
         
         {
-            key: 'Statutory Listed Building',
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=heritage:statutory_listed_buildings&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            key: 'Drains', //points - seems to work based on the code in app.js identifying layers by zoom level. Having to layers with the same key names is usually a problem.
+            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=flooding:drains&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
             layerOptions: {
-                onEachFeature: Statutory_listed_Popup,
-                maxZoom: 17,
-                minZoom:20,
-                style: Statutory_listed_style
+                onEachFeature: drainsPopup,
+                maxZoom: 2,
+                style: drainsStyle,
+            },
+            displayOverlay: true,
+            visibleByDefault: false
+        }, 
+        
+        {
+            key: 'Culverts', //points - seems to work based on the code in app.js identifying layers by zoom level. Having to layers with the same key names is usually a problem.
+            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=flooding:culverts&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            layerOptions: {
+                onEachFeature: culvertsPopup,
+                maxZoom: 2,
+                style: culvertsStyle,
+            },
+            displayOverlay: true,
+            visibleByDefault: false
+        },
+
+        {
+            key: 'Trash Screens', //points - seems to work based on the code in app.js identifying layers by zoom level. Having to layers with the same key names is usually a problem.
+            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=flooding:trash_screens&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            layerOptions: {
+                onEachFeature: trashscreensPopup,
+                maxZoom: 2,
+                style: trashscreensStyle,
+                pointToLayer: (feature, latlng) => {
+                    return Leaflet.circleMarker(latlng)
+                },
+            },
+            displayOverlay: true,
+            visibleByDefault: false
+        },
+
+        {
+            key: 'Flood Incidents', //points - seems to work based on the code in app.js identifying layers by zoom level. Having to layers with the same key names is usually a problem.
+            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=flooding:flood_incidents&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            layerOptions: {
+                onEachFeature: floodincidentsPopup,
+                maxZoom: 2,
+                style: floodincidentsStyle,
+            },
+            displayOverlay: true,
+            visibleByDefault: false
+        },
+
+        {
+            key: 'Flood Assets', //points - seems to work based on the code in app.js identifying layers by zoom level. Having to layers with the same key names is usually a problem.
+            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=flooding:flood_assets&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            layerOptions: {
+                onEachFeature: floodassetsPopup,
+                maxZoom: 2,
+                style: floodassetsStyle,
             },
             displayOverlay: true,
             visibleByDefault: true
         },
 
         {
-            key: 'Statutory Listed Building', //Points
-            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=heritage:statutory_listed_buildings_points&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
+            key: 'Waterbodies', //points - seems to work based on the code in app.js identifying layers by zoom level. Having to layers with the same key names is usually a problem.
+            url: 'https://spatial.stockport.gov.uk/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=flooding:waterbodies&outputFormat=application/json&bbox={0},EPSG:4326&srsName=EPSG:4326',
             layerOptions: {
-                onEachFeature: Statutory_listed_Popup,
-                minZoom: 16,
+                onEachFeature: waterbodiesPopup,
                 maxZoom: 2,
-                style: statutorylistedpointsStyle,
-                pointToLayer: (feature, latlng) => {
-                    return Leaflet.circleMarker(latlng)
-                },
+                style: waterbodiesStyle,
             },
             displayOverlay: true,
             visibleByDefault: true
-        },        
+        },
 
     ],
     StaticData: 

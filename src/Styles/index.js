@@ -1,95 +1,85 @@
-const Locally_listed_style = {
-    color: '#fb9a99',
+const gulliesStyle = {
+    radius: 4,
+    color: '#252525',
     weight: 2,
     opacity: 1,
     fillColor: '#fb9a99',
+    fillOpacity: 0.75
+}
+
+function getColor_drains(d) {
+    switch  (d) {   case 'Gully Lead'    :
+                        return '#a6cee3'    
+                    case 'Highway Drain'    :
+                        return '#cab2d6'
+                    case 'Other'    :
+                        return '#fdbf6f'
+                    case null    :
+                        return '#b15928'        
+                }
+    }
+
+function drainsStyle (feature) {
+    return {
+        color: getColor_drains (feature.properties.type),
+        weight: 4,
+        opacity: 1,
+        fillColor: getColor_drains (feature.properties.type),
+        fillOpacity: 1
+        }
+    }
+
+const culvertsStyle = {
+    radius: 4,
+    color: '#1f78b4',
+    weight: 4,
+    opacity: 1,
+    fillColor: '#1f78b4',
+    fillOpacity: 0.75
+}
+
+const trashscreensStyle = {
+    radius: 6,
+    color: '#252525',
+    weight: 2,
+    opacity: 1,
+    fillColor: '#ffed6f',
+    fillOpacity: 0.75
+}
+
+const floodincidentsStyle = {
+    radius: 6,
+    color: '#a50f15',
+    weight: 2,
+    opacity: 1,
+    fillColor: '#cb181d',
     fillOpacity: 0.5
 }
 
-const Statutory_listed_style = {
-color: '#3288bd',
-weight: 2,
-opacity: 1,
-fillColor: '#3288bd',
-fillOpacity: 0.5
+const floodassetsStyle = {
+    radius: 6,
+    color: '#41ab5d',
+    weight: 2,
+    opacity: 1,
+    fillColor: '#41ab5d',
+    fillOpacity: 0.5
 }
 
-const Conservation_area_style = {
-color: '#e31a1c',
-weight: 4,
-opacity: 1,
-fillColor: '#e31a1c',
-fillOpacity: 0
-}
-
-const Article4_1_direction_style = {
-color: '#cab2d6',
-weight: 2,
-opacity: 1,
-fillColor: '#cab2d6',
-fillOpacity: 0.5
-}
-
-const Article4_2_direction_style = {
-color: '#ffff99',
-weight: 2,
-opacity: 1,
-fillColor: '#ffff99',
-fillOpacity: 0.5
-}
-
-const Scheduled_monument_style = {
-color: '#b15928',
-weight: 2,
-opacity: 1,
-fillColor: '#b15928',
-fillOpacity: 0.5
-}
-
-const Historic_parks_gardens_style = {
-color: '#33a02c',
-weight: 2,
-opacity: 1,
-fillColor: '#33a02c',
-fillOpacity: 0.5
-}
-
-const statutorylistedpointsStyle = {
-radius: 4,
-color: '#3288bd',
-weight: 2,
-opacity: 1,
-fillColor: '#3288bd',
-fillOpacity: 0.5
-}
-
-const locallylistedpointsStyle = {
-radius: 4,
-color: '#fb9a99',
-weight: 2,
-opacity: 1,
-fillColor: '#fb9a99',
-fillOpacity: 0.5
-}
-
-const Scheduled_monument_points_style = {
-radius: 4,
-color: '#b15928',
-weight: 2,
-opacity: 1,
-fillColor: '#b15928',
-fillOpacity: 0.5
+const waterbodiesStyle = {
+    radius: 6,
+    color: '#807dba',
+    weight: 2,
+    opacity: 1,
+    fillColor: '#807dba',
+    fillOpacity: 0.5
 }
 
 export {
-Locally_listed_style,
-Statutory_listed_style,
-Conservation_area_style,
-Article4_1_direction_style,
-Article4_2_direction_style,
-Scheduled_monument_style,
-Historic_parks_gardens_style,
-statutorylistedpointsStyle,
-locallylistedpointsStyle,
-Scheduled_monument_points_style
+gulliesStyle,
+drainsStyle,
+culvertsStyle,
+trashscreensStyle,
+floodincidentsStyle,
+floodassetsStyle,
+waterbodiesStyle
 }
